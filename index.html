@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed" rel="stylesheet">
+
+    <title>Avengers by Macarena Pardo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <header>
+
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-lalala">
+        <a class="navbar-brand" href="#">Avengers</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="intro">Intro</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="genre">Genders</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="years">Years</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="harrison">Iron Man</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!--<main role="main"> -->
+
+     <!-- Page Header -->
+    <header class="masthead" style="background-image: url('img/birds.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Avengers</h1>
+              <span class="subheading">MARVEL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+        <div class="container">
+          <h2 class="featurette-heading" >History <span class="text-muted">of the Avengers</span></h2>
+
+    <hr>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4"><p>The Avengers are a fictional team of superheroes appearing in American comic books published by Marvel Comics. The team made its debut in The Avengers #1 (cover-dated Sept. 1963), created by writer-editor Stan Lee and artist/co-plotter Jack Kirby. The Avengers is Lee and Kirby's renovation of a previous superhero team, All-Winners Squad, that appeared in comic books series published Marvel Comics' predecessor Timely Comics.
+
+            Labeled "Earth's Mightiest Heroes", the Avengers originally consisted of Ant-Man, the Hulk, Iron Man, Thor, and the Wasp. Ant-Man had become Giant-Man by issue #2. The original Captain America was discovered trapped in ice in issue #4, and joined the group after they revived him.</p></div>
+
+            <div class="col-lg-4">
+              <img class="img-fluid rounded-circle" src="img/01.jpg" alt="">
+            </div>
+
+            <div class="col-lg-4"><p>A rotating roster became a hallmark of the series, although one theme remained consistent: the Avengers fight "the foes no single superhero can withstand." The team, famous for its battle cry of "Avengers Assemble!", has featured humans, mutants, Inhumans, androids, aliens, supernatural beings, and even former villains.
+
+            The team has appeared in a wide variety of media outside of comic books including a number of different animated television series and direct-to-video films. The 2012 live-action feature film The Avengers, directed by Joss Whedon, set numerous records during its box office run, including one of the biggest opening debuts in North America, with a weekend gross of $207.4 million. A second Avengers film titled Avengers: Age of Ultron was released on May 1, 2015, followed by Avengers: Infinity War, scheduled to be released on April 27, 2018 and an unnamed sequel, scheduled for release on May 3, 2019.</p></div>
+        </div>
+      
+
+        <hr>
+
+        <div class="container">
+          <h2 class="featurette-heading" >Heroes and Heroines: <span class="text-muted">in the Avengers</span></h2>
+          <p><center>Simple visualization of how many female and male heroes there are inside the avengers</center></p>
+
+      <script src="https://d3js.org/d3.v5.min.js"></script>
+  <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+               <div id="here" class="my-4"></div>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+    //variables globales
+    var w = 1000, h = 400, f = 1;
+    //datos
+    var data = [
+      {name: 'Male', gender: 115, bg: "#496ba3"},
+      {name: 'Female', gender: 58, bg: "#ce4a4a"},
+    ]    
+    console.log(data);
+    //crea el svg dentro del elemento de identidad "here"
+    var svg = d3.select("#here")
+    .append("svg")
+      .attr("width", w)
+      .attr("height", h)
+      .style("background","#fff");
+    //selecciona el grupo
+    var g = svg.selectAll("g")
+      .data(data)
+      .enter()
+      .append("g")  
+    //dentro del grupo, crea círculos para la data
+    g.append("circle")
+      .attr("cx", function(d, i) { return (i+1) * w/(data.length+1); })
+      .attr("cy", function(d) { return h/2; })
+      .attr("r", function(d) { return d.gender/f; })
+      .attr("fill",function(d) { return d.bg; })
+    //dentro del mismo grupo, agregar texto para la data
+    g.append("text")
+      .attr("x", function(d, i) { return (i+1) * w/(data.length+1); })
+      .attr("y", function(d, i) { return (h/1.75)+d.gender/f; })
+      .attr("fill","#000000")
+      .attr('text-anchor','middle')
+      .text(function(d) { return d.name; })
+    //dentro del mismo grupo, agrega otro texto para la data
+    g.append("text")
+      .attr("x", function(d, i) { return (i+1) * w/(data.length+1); })
+      .attr("y", function(d, i) { return (h/1.6)+d.gender/f; })
+      .attr("fill","#333333")
+      .attr('text-anchor','middle')      
+      .text(function(d) { return "("+d.gender+")"; })
+      .style("font-size","10px")
+    </script>
+
+
+<hr>
+
+
+<div class="container-fluid">
+<div class="row" style="overflow: hidden;">
+    <div id="here"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
+
+    <div class="container">
+         <div class="row">
+            <div class="col-12">
+              <h2 class="featurette-heading" >Are they still<span class="text-muted"> Avengers?</span></h2>         
+
+         </div>
+      </div>
+    </div>
+    <hr>
+      <script src="https://d3js.org/d3.v5.min.js"></script>
+      
+      <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <table class="table table-hover">
+          <thead> 
+            <tr>
+              <th>Nombre</th>
+              <td><code><p style="color:#496ba3";>Still Avenger?</p></code></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tony Stark</td>
+              <td><code><p style="color:#496ba3";>YES</p></code></td>
+            </tr>
+            <tr>
+              <td>Thor Odinson</td>
+              <td><code><p style="color:#496ba3";>YES</p></code></td>            
+            </tr>
+            <tr>
+              <td>Natalia Romanova </td>
+              <td><code><p style="color:#496ba3";>YES</p></code></td>
+            </tr>
+            <tr>
+              <td>Steve Rogers </td>
+              <td><code><p style="color:#496ba3";>YES</p></code></td>              
+            </tr>
+            <tr>
+              <td>T'Challa</td>
+              <td><code><p style="color:#afafaf";>NO</p></code></td> 
+            </tr>
+          </tbody>
+          </table>
+        </div><!--/col-sm-6 py-2 table-responsive-->
+         <div class="col-lg-6">
+          <table class="table table-hover">
+          <thead> 
+            <tr>
+              <th>Nombre</th>
+              <td><code><p style="color:#496ba3";>Still Avenger?</p></code></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ororo Munroe</td>
+              <td><code><p style="color:#afafaf";>NO</p></code></td> 
+            </tr>
+            <tr>
+              <td>Wade Wilson</td>
+              <td><code><p style="color:#afafaf";>NO</p></code></td> 
+            </tr>
+            <tr>
+              <td>Peter Parker</td>
+              <td><code><p style="color:#496ba3";>YES</p></code></td>
+            </tr>
+            <tr>
+              <td>Mantis</td>
+              <td><code><p style="color:#afafaf";>NO</p></code></td> 
+            </tr>
+            <tr>
+              <td>Henry Pym</td>
+              <td><code><p style="color:#496ba3";>YES</p></code></td>             
+            </tr>
+          </tbody>
+          </table>
+        </div><!--/col-sm-6 py-2 table-responsive-->
+</div>
+</div>
+</div>
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="self-end">
+<script>
+var flock;
+
+function setup() {
+  createCanvas(1262,500);
+  createP("Drag the mouse to generate new boids.");
+  
+  flock = new Flock();
+  // Add an initial set of boids into the system
+  for (var i = 0; i < 100; i++) {
+    var b = new Boid(width/2,height/2);
+    flock.addBoid(b);
+  }
+}
+
+function draw() {
+  background(0,0,0);
+  flock.run();
+}
+
+// Add a new boid into the System
+function mouseDragged() {
+  flock.addBoid(new Boid(mouseX,mouseY));
+}
+
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Flock object
+// Does very little, simply manages the array of all the boids
+
+function Flock() {
+  // An array for all the boids
+  this.boids = []; // Initialize the array
+}
+
+Flock.prototype.run = function() {
+  for (var i = 0; i < this.boids.length; i++) {
+    this.boids[i].run(this.boids);  // Passing the entire list of boids to each boid individually
+  }
+}
+
+Flock.prototype.addBoid = function(b) {
+  this.boids.push(b);
+}
+
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Boid class
+// Methods for Separation, Cohesion, Alignment added
+
+function Boid(x,y) {
+  this.acceleration = createVector(0,0);
+  this.velocity = createVector(random(-1,1),random(-1,1));
+  this.position = createVector(x,y);
+  this.r = 3.0;
+  this.maxspeed = 3;    // Maximum speed
+  this.maxforce = 0.05; // Maximum steering force
+}
+
+Boid.prototype.run = function(boids) {
+  this.flock(boids);
+  this.update();
+  this.borders();
+  this.render();
+}
+
+Boid.prototype.applyForce = function(force) {
+  // We could add mass here if we want A = F / M
+  this.acceleration.add(force);
+}
+
+// We accumulate a new acceleration each time based on three rules
+Boid.prototype.flock = function(boids) {
+  var sep = this.separate(boids);   // Separation
+  var ali = this.align(boids);      // Alignment
+  var coh = this.cohesion(boids);   // Cohesion
+  // Arbitrarily weight these forces
+  sep.mult(1.5);
+  ali.mult(1.0);
+  coh.mult(1.0);
+  // Add the force vectors to acceleration
+  this.applyForce(sep);
+  this.applyForce(ali);
+  this.applyForce(coh);
+}
+
+// Method to update location
+Boid.prototype.update = function() {
+  // Update velocity
+  this.velocity.add(this.acceleration);
+  // Limit speed
+  this.velocity.limit(this.maxspeed);
+  this.position.add(this.velocity);
+  // Reset accelertion to 0 each cycle
+  this.acceleration.mult(0);
+}
+
+// A method that calculates and applies a steering force towards a target
+// STEER = DESIRED MINUS VELOCITY
+Boid.prototype.seek = function(target) {
+  var desired = p5.Vector.sub(target,this.position);  // A vector pointing from the location to the target
+  // Normalize desired and scale to maximum speed
+  desired.normalize();
+  desired.mult(this.maxspeed);
+  // Steering = Desired minus Velocity
+  var steer = p5.Vector.sub(desired,this.velocity);
+  steer.limit(this.maxforce);  // Limit to maximum steering force
+  return steer;
+}
+
+Boid.prototype.render = function() {
+  // Draw a triangle rotated in the direction of velocity
+  var theta = this.velocity.heading() + radians(90);
+  fill(73, 107, 163);
+  stroke(73, 107, 163);
+  push();
+  translate(this.position.x,this.position.y);
+  rotate(theta);
+  beginShape();
+  vertex(0, -this.r*2);
+  vertex(-this.r, this.r*2);
+  vertex(this.r, this.r*2);
+  endShape(CLOSE);
+  pop();
+}
+
+// Wraparound
+Boid.prototype.borders = function() {
+  if (this.position.x < -this.r)  this.position.x = width +this.r;
+  if (this.position.y < -this.r)  this.position.y = height+this.r;
+  if (this.position.x > width +this.r) this.position.x = -this.r;
+  if (this.position.y > height+this.r) this.position.y = -this.r;
+}
+
+// Separation
+// Method checks for nearby boids and steers away
+Boid.prototype.separate = function(boids) {
+  var desiredseparation = 25.0;
+  var steer = createVector(0,0);
+  var count = 0;
+  // For every boid in the system, check if it's too close
+  for (var i = 0; i < boids.length; i++) {
+    var d = p5.Vector.dist(this.position,boids[i].position);
+    // If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
+    if ((d > 0) && (d < desiredseparation)) {
+      // Calculate vector pointing away from neighbor
+      var diff = p5.Vector.sub(this.position,boids[i].position);
+      diff.normalize();
+      diff.div(d);        // Weight by distance
+      steer.add(diff);
+      count++;            // Keep track of how many
+    }
+  }
+  // Average -- divide by how many
+  if (count > 0) {
+    steer.div(count);
+  }
+
+  // As long as the vector is greater than 0
+  if (steer.mag() > 0) {
+    // Implement Reynolds: Steering = Desired - Velocity
+    steer.normalize();
+    steer.mult(this.maxspeed);
+    steer.sub(this.velocity);
+    steer.limit(this.maxforce);
+  }
+  return steer;
+}
+
+// Alignment
+// For every nearby boid in the system, calculate the average velocity
+Boid.prototype.align = function(boids) {
+  var neighbordist = 50;
+  var sum = createVector(0,0);
+  var count = 0;
+  for (var i = 0; i < boids.length; i++) {
+    var d = p5.Vector.dist(this.position,boids[i].position);
+    if ((d > 0) && (d < neighbordist)) {
+      sum.add(boids[i].velocity);
+      count++;
+    }
+  }
+  if (count > 0) {
+    sum.div(count);
+    sum.normalize();
+    sum.mult(this.maxspeed);
+    var steer = p5.Vector.sub(sum,this.velocity);
+    steer.limit(this.maxforce);
+    return steer;
+  } else {
+    return createVector(0,0);
+  }
+}
+
+// Cohesion
+// For the average location (i.e. center) of all nearby boids, calculate steering vector towards that location
+Boid.prototype.cohesion = function(boids) {
+  var neighbordist = 50;
+  var sum = createVector(0,0);   // Start with empty vector to accumulate all locations
+  var count = 0;
+  for (var i = 0; i < boids.length; i++) {
+    var d = p5.Vector.dist(this.position,boids[i].position);
+    if ((d > 0) && (d < neighbordist)) {
+      sum.add(boids[i].position); // Add location
+      count++;
+    }
+  }
+  if (count > 0) {
+    sum.div(count);
+    return this.seek(sum);  // Steer towards the location
+  } else {
+    return createVector(0,0);
+  }
+}
+
+</script>
+</div>
+</div>
+</div>
+
+ <hr>
+
+           <hr>
+
+<!--<script>
+var radius = 300;
+
+function setup() {
+  createCanvas(1261, 500, WEBGL);
+  noStroke();
+  fill(300);
+}
+
+function draw() {
+  noStroke();
+  background(0);
+  var dirY = (mouseY / height - 0.5) * 4;
+  var dirX = (mouseX / width - 0.5) * 4;
+  directionalLight(204, 204, 204, dirX, dirY, 1);
+  translate(-1.5 * radius, 0, 0);
+  sphere(radius);
+  translate(3 * radius, 0, 0);
+  sphere(radius);
+}
+</script>
+</div>-->
+
+      <!-- FOOTER -->
+      <footer class="container">
+
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2018 Macarena Pardo &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+    </main>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="holder.min.js"></script>
+  </body>
+</html>
